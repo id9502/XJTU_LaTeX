@@ -13,12 +13,12 @@
 #             instead of click it directly                                          #
 #####################################################################################
 
-cd `dirname $0`
+cd "`dirname "$0"`"
 
 printf "Chinese characters count (with punctuation):\n\n"
 
-for path in $(ls ./*.tex)
+for path in $(ls *.tex)
 do
-  only_char=`sed 's/%.*$//' $path | tr -d "[:print:][:cntrl:]" | wc -m`
+  only_char=`sed 's/%.*$//' $path | tr -d "\40-\177[:cntrl:]" | wc -m`
   printf "%-15s >> %d\n" $path $only_char
 done
